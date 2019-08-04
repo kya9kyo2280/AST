@@ -8,7 +8,7 @@ class GenresController < ApplicationController
   def new
   end
 
-  def cresate
+  def create
   end
 
   def edit

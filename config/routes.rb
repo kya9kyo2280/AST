@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+  devise_for :admins
+
   resources :genres
   resources :events
   resources :purposes
   resources :scores
   resources :times
   resources :studies
+  resources :users
 
-  devise_for :users
-  devise_for :admins
 
   namespace :admin do
-    resources :eventts
+    resources :events
     resources :studies
     resources :users
     resources :purposes

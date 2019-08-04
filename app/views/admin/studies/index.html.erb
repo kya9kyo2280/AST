@@ -1,7 +1,7 @@
 <h1>投稿一覧</h1>
  <% @studies.each do |s| %>
     <p>タイトル</p>
-    <span><%= link_to s.study_title, study_path(s.id) %></span>
+    <span><%= link_to s.study_title, admin_study_path(s.id) %></span>
     <span><%= s.review %></span>
 
  <% end %>
