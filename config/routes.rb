@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :times
   resources :studies
   resources :users
+  resources :media
+
+
 
 
   namespace :admin do
@@ -17,6 +20,8 @@ Rails.application.routes.draw do
     resources :studies
     resources :users
     resources :purposes
+    resources :genres
+    resources :media
   end
   root to: 'studies#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

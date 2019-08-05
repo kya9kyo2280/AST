@@ -1,7 +1,10 @@
 <h1>投稿一覧</h1>
+ <span><%= link_to "新規投稿", new_study_path %></span>
  <% @studies.each do |s| %>
     <p>タイトル</p>
     <span><%= link_to s.study_title, study_path(s.id) %></span>
     <span><%= s.review %></span>
+    <p>画像</p>
+    <%= attachment_image_tag s, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %>
 
  <% end %>

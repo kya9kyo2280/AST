@@ -36,6 +36,6 @@ class StudiesController < ApplicationController
 
   private
     def study_params
-        params.require(:study).permit(:study_title, :review)
+        params.require(:study).permit(:study_title, :review, :image, :user_id, :genre_id, :medium_id)
     end
 end

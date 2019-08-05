@@ -5,6 +5,15 @@
     <h4>タイトル</h4>
     <%= f.text_field :study_title %>
 
+    <h4>媒体</h4>
+    <%=  f.collection_select :medium_id, Medium.all, :id, :medium_name, :prompt => "媒体(本やアプリなど)を選択してください", class: "select" %>
+
+    <h4>ジャンル</h4>
+    <%=  f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "ジャンルを選択してください", class: "select" %>
+
+    <h4>画像</h4>
+    <%= f.attachment_field :image %>
+
     <h4>本文</h4>
     <%= f.text_area :review %>
 
