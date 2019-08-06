@@ -1,3 +1,26 @@
+<table>
 <%= @user.name %>
+<thead>
+<th>目標スコア</th>
+<th>現在スコア</th>
+<th>目標時間</th>
+<th>現在時間</th>
+<th>目標達成</th>
+
+
+</thead>
+<tbody>
+  <td><%= @user.purposes.last.purpose_score %></td>
+  <td><%= @user.scores.last.current_score %></td>
+  <td><%= @purposetime -  @usertime %></td>
+  <td><%= @totalstudytime %></td>
+  <td><%= @purposetime -  @usertime -  @totalstudytime %></td>
+
+</tbody>
+</table>
+<%= link_to "スコア", new_score_path %>
+<%= link_to "目標", new_purpose_path %>
+<%= link_to "時間", new_post_time_path %>
 <%= link_to "編集", edit_user_path(@user.id) %>
 <%= link_to "削除", user_path(@user), method: :delete, "data-confirm" => "本当に消しますか？" %>
+

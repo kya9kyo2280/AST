@@ -1,19 +1,13 @@
 
-<h2>Users</h2>
-<table>
-  <thead>
-    <tr>
-      <th> name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |u| %>
-    <tr>
-  </div>
-      <td><%= link_to u.name, user_path(u.id) %></td>
+<h2>ユーザー一覧</h2>
 
-
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table>
+      <tbody>
+        <% @users.each do |u| %>
+        <tr>
+          <td class="align-middle"><%= u.id %></td>
+          <td class="align-middle"><%= link_to u.name, user_path(u.id) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>

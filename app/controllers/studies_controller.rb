@@ -5,6 +5,8 @@ class StudiesController < ApplicationController
 
   def index
     @studies = Study.all
+    @search = Study.ransack(params[:q])
+    @studies = @search.result
   end
 
   def new

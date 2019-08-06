@@ -1,2 +1,9 @@
-<h1>Scores#new</h1>
-<p>Find me in app/views/scores/new.html.erb</p>
+<%= form_for(@score) do |f| %>
+    <div class="form-group">
+      <%= f.label :"ジャンル" %>
+      <%= f.number_field :current_score, class: "form-control" %>
+    </div>
+    <div>
+      <%= f.submit '設定する', class:"btn btn-success" %>
+    </div>
+  <% end %>

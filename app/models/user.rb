@@ -7,5 +7,7 @@ class User < ApplicationRecord
   has_many :studies, dependent: :destroy
   has_many :scores, dependent: :destroy
   has_many :purposes, dependent: :destroy
+  has_many :post_times, dependent: :destroy
+
 
 end

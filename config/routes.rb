@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :events
   resources :purposes
   resources :scores
-  resources :times
+  resources :post_times
   resources :studies
   resources :users
   resources :media

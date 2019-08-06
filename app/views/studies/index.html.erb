@@ -1,10 +1,32 @@
 <h1>投稿一覧</h1>
- <span><%= link_to "新規投稿", new_study_path %></span>
- <% @studies.each do |s| %>
-    <p>タイトル</p>
-    <span><%= link_to s.study_title, study_path(s.id) %></span>
-    <span><%= s.review %></span>
-    <p>画像</p>
-    <%= attachment_image_tag s, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %>
 
- <% end %>
+ <span><%= link_to "新規投稿", new_study_path %></span>
+
+ <%= search_form_for @search do |f| %>
+  <%= f.search_field :study_title_or_review_or_medium_medium_name_or_genre_genre_name_cont %>
+  <div class="actions"><%= f.submit "検索" %></div>
+　　<% end %>
+
+ <table>
+ <thead>
+    <tr>
+      <th> Image</th>
+      <th> Title</th>
+      <th> Opinion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @studies.each do |s| %>
+
+    <tr>
+
+      <td>
+       <%= attachment_image_tag s, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %>
+      </td>
+      <td><%= link_to s.study_title, study_path(s.id) %></td>
+      <td><%= s.review %></td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
