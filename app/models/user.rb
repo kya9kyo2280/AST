@@ -8,6 +8,11 @@ class User < ApplicationRecord
   has_many :scores, dependent: :destroy
   has_many :purposes, dependent: :destroy
   has_many :post_times, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_studies, through: :likes, source: :study
 
+  def already_liked?(study)
+    self.likes.exists?(study_id: study.id)
+  end
 
 end

@@ -13,6 +13,7 @@
       <th> Image</th>
       <th> Title</th>
       <th> Opinion</th>
+      <th>いいね</th>
     </tr>
   </thead>
   <tbody>
@@ -25,7 +26,7 @@
       </td>
       <td><%= link_to s.study_title, study_path(s.id) %></td>
       <td><%= s.review %></td>
-
+      <td><%= s.liked_users.count %><td>
     </tr>
     <% end %>
   </tbody>

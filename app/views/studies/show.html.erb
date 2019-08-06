@@ -4,10 +4,20 @@
 <%= link_to "削除", study_path(@study), method: :delete, "data-confirm" => "本当に消しますか？" %>
 <h2>タイトル</h2>
 <p><%= @study.study_title %></p>
-<h2>ジャンル</h2>
-<p><%= @study.medium.medium_name %></p>
 <h2>媒体</h2>
+<p><%= @study.medium.medium_name %></p>
+<h2>ジャンル</h2>
 <p><%= @study.genre.genre_name %></p>
 
 <h2>本文</h2>
 <p><%= @study.review %></p>
+<h3>いいね件数: <%= @study.likes.count %></h3>
+<% if current_user.already_liked?(@study) %>
+  <%= button_to 'いいねを取り消す', study_like_path(@study), method: :delete %>
+<% else %>
+  <%= button_to 'いいね', study_likes_path(@study) %>
+<% end %>
+<h2>いいねしたユーザー</h2>
+<% @study.liked_users.each do |user| %>
+  <li><%= user.name %></li>
+<% end %>

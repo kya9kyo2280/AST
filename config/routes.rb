@@ -8,10 +8,11 @@ Rails.application.routes.draw do
   resources :purposes
   resources :scores
   resources :post_times
-  resources :studies
   resources :users
   resources :media
-
+  resources :studies do
+  resources :likes
+  end
 
 
 

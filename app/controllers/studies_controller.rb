@@ -1,6 +1,7 @@
 class StudiesController < ApplicationController
   def show
     @study = Study.find(params[:id])
+    @like = Like.new
   end
 
   def index
