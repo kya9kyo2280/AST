@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
 
-	def show
+  def show
         @user = User.find(params[:id])
+        @purpose = Purpose.new
+        @score = Score.new
+        @post_time = PostTime.new
         @totalstudytime =  @user.post_times.all.sum(:study_time)
         @usertime =  if @user.scores.last.current_score < 201
                         0
@@ -39,7 +42,9 @@ class UsersController < ApplicationController
                         3900
                      end
 
-        @purposetime = if @user.purposes.last.purpose_score < 251
+        @purposetime = if @user.purposes.last.purpose_score < 201
+                        0
+                    elsif@user.purposes.last.purpose_score < 251
                         200
                      elsif @user.purposes.last.purpose_score < 301
                         400
@@ -92,6 +97,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.destroy
     redirect_to root_path
+    
     end
 
   private

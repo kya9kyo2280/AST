@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :post_times, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_studies, through: :likes, source: :study
+  accepts_nested_attributes_for :scores, :purposes
 
   def already_liked?(study)
     self.likes.exists?(study_id: study.id)

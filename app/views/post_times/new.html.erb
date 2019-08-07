@@ -1,7 +1,7 @@
 <%= form_for(@post_time) do |f| %>
     <div class="form-group">
       <%= f.label :"時間を追加" %>
-      <%= f.select(:study_time,  -10..10,:selected=>0 )%>
+      <%= f.select(:study_time,  [-2,-1,-0.5,0.5,1],:selected=>1 )%>
 
     </div>
     <div>

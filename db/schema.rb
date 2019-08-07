@@ -46,21 +46,21 @@ ActiveRecord::Schema.define(version: 2019_08_06_093607) do
   end
 
   create_table "post_times", force: :cascade do |t|
-    t.integer "study_time"
+    t.float "study_time"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "purposes", force: :cascade do |t|
-    t.integer "purpose_score"
+    t.integer "purpose_score", default: 0, null: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "scores", force: :cascade do |t|
-    t.integer "current_score"
+    t.integer "current_score", default: 0, null: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

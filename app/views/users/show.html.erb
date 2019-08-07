@@ -1,26 +1,53 @@
 <table>
 <%= @user.name %>
-<thead>
+<tr>
 <th>目標スコア</th>
+<td><%= @user.purposes.last.purpose_score %></td>
+<td><%= form_for(@purpose) do |f| %>
+    <div class="form-group">
+      <%= f.label :"目標" %>
+      <%= f.number_field :purpose_score, class: "form-control" %>
+      <%= f.submit '設定する', class:"btn btn-success" %>
+    </div>
+  <% end %>
+</td>
+</tr>
+<tr>
 <th>現在スコア</th>
+<td><%= @user.scores.last.current_score %></td>
+<td><%= form_for(@score) do |f| %>
+    <div class="form-group">
+      <%= f.label :"現在のスコア" %>
+      <%= f.number_field :current_score, class: "form-control" %>
+      <%= f.submit '設定する', class:"btn btn-success" %>
+    </div>
+  <% end %>
+</td>
+</tr>
+<tr>
 <th>目標時間</th>
+<td><%= @purposetime -  @usertime %></td>
+</tr>
+<tr>
 <th>現在時間</th>
+<td><%= @totalstudytime %></td>
+<td><%= form_for(@post_time) do |f| %>
+    <div class="form-group">
+      <%= f.label :"時間を追加" %>
+      <%= f.select(:study_time,  [-2,-1,-0.5,0.5,1,1.5,2],:selected=>1 )%>
+      <%= f.submit '追加する', class:"btn btn-success" %>
+    </div>
+  <% end %>
+</td>
+</tr>
+<tr>
 <th>目標達成</th>
 
-
-</thead>
-<tbody>
-  <td><%= @user.purposes.last.purpose_score %></td>
-  <td><%= @user.scores.last.current_score %></td>
-  <td><%= @purposetime -  @usertime %></td>
-  <td><%= @totalstudytime %></td>
   <td><%= @purposetime -  @usertime -  @totalstudytime %></td>
+</tr>
 
-</tbody>
 </table>
-<%= link_to "スコア", new_score_path %>
-<%= link_to "目標", new_purpose_path %>
-<%= link_to "時間", new_post_time_path %>
+
 <%= link_to "編集", edit_user_path(@user.id) %>
 <%= link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？" %>
 <h2>投稿内容</h2>

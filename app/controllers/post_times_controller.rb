@@ -13,6 +13,12 @@ class PostTimesController < ApplicationController
     end
   end
 
+  def destroy
+    @post_time = PostTime.find(params[:id])
+    @post_time.destroy
+    redirect_to root_path
+    end
+
   private
   def post_time_params
     params.require(:post_time).permit(:study_time, :user_id)
