@@ -17,3 +17,22 @@
 
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+header {
+	margin-bottom: 50px;
+	background-color: #87cefa;
+	color: #444;
+}
+
+footer {
+	height: 45px;
+	margin-top: 50px;
+	background-color: #87cefa;
+	color: #444;
+}

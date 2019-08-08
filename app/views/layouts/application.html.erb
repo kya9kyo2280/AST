@@ -13,23 +13,22 @@
 
   <body>
 
-    <div class="header" id="header">
-      <nav class="navbar navbar-main navbar-inverse" role="navigation" id="slide-nav">
-        <div class="container relative">
-          <div class="navbar-header">
-            <a class="navbar-brand" style="color:white;font-size: 20px;
-    padding-top: 5px;">AST</a>
-          </div>
-          <div id="slidemenu">
-  <ul class="nav navbar-nav navbar-right" >
-
-
-    <% if user_signed_in? %>
+   <header class="sticky-top">
+      <nav class="navbar">
+        <div class="nav-content">
+          <ul class="list-group list-group-horizontal nav-list">
+           <% if user_signed_in? %>
 
 
     <li class=""style="color:white; padding-left: 5px;">
         <%= link_to user_path(current_user.id)  do%>
         <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
+        <%end%>
+     </li>
+
+     <li class=""style="color:white; padding-left: 5px;">
+        <%= link_to new_contact_path  do%>
+        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Contact
         <%end%>
      </li>
 
@@ -75,26 +74,19 @@
       </li>
 
    <% end %>
+          </ul>
 
- </div>
-
-  </ul>
-</div>
-        </div>
         </div>
       </nav>
-    </div>
-
-
-    <%= flash[:notice]%>
+    </header>
     <%= yield %>
-
-    <div class="clearfix">
-    <div class="col-sm-3 col-md-2 sidebar">
-
-　　</div>
-    </div>
 
   </body>
 </html>
+
+<footer>
+      <p>
+      CopyRight Infratop.inc
+      </p>
+    </footer>
 

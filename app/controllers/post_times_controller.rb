@@ -16,7 +16,7 @@ class PostTimesController < ApplicationController
   def destroy
     @post_time = PostTime.find(params[:id])
     @post_time.destroy
-    redirect_to root_path
+    redirect_to user_path(current_user.id)
     end
 
   private

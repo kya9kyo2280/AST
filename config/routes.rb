@@ -13,9 +13,14 @@ Rails.application.routes.draw do
   resources :post_times
   resources :users
   resources :media
-  resources :studies do
-  resources :likes
+  resources :contacts do
+    resources :contact_comments
   end
+  resources :studies do
+    resources :likes
+  end
+
+
 
 
 
@@ -26,6 +31,9 @@ Rails.application.routes.draw do
     resources :purposes
     resources :genres
     resources :media
+    resources :contacts do
+      resources :contact_comments
+    end
   end
   root to: 'studies#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,0 +1,16 @@
+<h2>タイトル</h2>
+<p><%= @contact.contact_title %></p>
+<h2>本文</h2>
+<p><%= @contact.contact_message %></p>
+<h2>返事</h2>
+<% @comments.each do |c| %>
+  <div>
+    <%= c.reply %>
+    <hr>
+  </div>
+<% end %>
+<%= form_for [@contact, @contact_comment],url: admin_contact_contact_comments_path(@contact.id) do |f| %>
+  <%= f.text_field :reply %>
+  <br>
+  <%= f.submit '返事をする' %>
+<% end %>
