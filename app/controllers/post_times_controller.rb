@@ -21,6 +21,6 @@ class PostTimesController < ApplicationController
 
   private
   def post_time_params
-    params.require(:post_time).permit(:study_time, :user_id)
+    params.require(:post_time).permit(:study_time, :study_day, :user_id)
   end
 end

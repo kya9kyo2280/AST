@@ -5,9 +5,9 @@ class StudiesController < ApplicationController
   end
 
   def index
-    @studies = Study.all
+    @studies = Study.page(params[:page]).per(10)
     @search = Study.ransack(params[:q])
-    @studies = @search.result
+    @studies = @search.result.page(params[:page]).per(10)
   end
 
   def new

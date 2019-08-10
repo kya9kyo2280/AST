@@ -15,4 +15,12 @@
 //= require turbolinks
 //= require_tree .
 //= require cocoon
-//= require jquery
+//= require jquery.jscroll.min.js
+
+
+$(document).on('turbolinks:load', function() {
+  $('.jscroll').jscroll({
+    contentSelector: '.study-list',
+    nextSelector: 'span.next:last a'
+  });
+});
