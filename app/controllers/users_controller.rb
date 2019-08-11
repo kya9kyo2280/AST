@@ -77,6 +77,7 @@ class UsersController < ApplicationController
                      else
                         3900
                      end
+                     @post_times = @user.post_times.order(study_day: "DESC").page(params[:page]).per(3)
     end
 
     def index

@@ -52,8 +52,10 @@
 
 </table>
 
-<%= link_to "編集", edit_user_path(@user.id) %>
-<%= link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？" %>
+ <h2 class="heading">学習状況</h2>
+ <div id="user_lists"><%= render 'user_list' %></div>
+ <div class="more"><%= link_to_next_page @post_times, 'もっと見る', remote: true, id: 'view_more' %></div
+
 
 <h2>投稿内容</h2>
 <% @user.studies.each do |study| %>
@@ -64,6 +66,8 @@
 <h3>いいねしている投稿</h3>
 <% @user.liked_studies.each do |study| %>
   <%= study.study_title %>
-  <%= study.review %>
 <% end %>
+
+<%= link_to "編集", edit_user_path(@user.id) %>
+<%= link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？" %>
 

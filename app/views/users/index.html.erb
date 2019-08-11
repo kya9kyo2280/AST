@@ -7,6 +7,7 @@
         <tr>
           <td class="align-middle"><%= u.id %></td>
           <td class="align-middle"><%= link_to u.name, user_path(u.id) %></td>
+           <td class="align-middle"><%= u.post_times.all.sum(:study_time) %></td>
         </tr>
         <% end %>
       </tbody>
