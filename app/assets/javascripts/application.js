@@ -12,10 +12,13 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
-//= require_tree .
+//= require jquery
+//= require jquery_ujs
 //= require cocoon
 //= require jquery.jscroll.min.js
+//= require bootstrap-sprockets
+//= require turbolinks
+//= require_tree .
 
 
 $(document).on('turbolinks:load', function() {
@@ -23,4 +26,17 @@ $(document).on('turbolinks:load', function() {
     contentSelector: '.study-list',
     nextSelector: 'span.next:last a'
   });
+});
+
+$(document).on('turbolinks:load', function() {
+  $("#smooth-scroll").click(function() {
+    $("html,body").animate({scrollTop:0}, "300");
+  });
+});
+
+$(document).on('turbolinks:load', function() {
+$('.slider').slick({
+    autoplay:true,
+    autoplaySpeed:5000
+});
 });

@@ -9,3 +9,17 @@ nav.pagination {
 ul.study-list {
   padding: 0;
 }
+.slider{
+    margin: 100px auto;
+    height: 600;
+    width: 300;
+}
+.slider img{
+    height: auto;
+    width: 100%;
+}
+/*slick setting*/
+.slick-prev:before,
+.slick-next:before {
+    color: #000;
+}

@@ -1,9 +1,10 @@
 
-<h2>ユーザー一覧</h2>
+<h2>ランキング</h2>
 
     <table>
       <tbody>
-        <% @users.each do |u| %>
+        <% @user_ranking.each do |u| %>
+
         <tr>
           <td class="align-middle"><%= u.id %></td>
           <td class="align-middle"><%= link_to u.name, user_path(u.id) %></td>

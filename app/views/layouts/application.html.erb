@@ -3,6 +3,9 @@
   <head>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <link href="js/slick-theme.css" rel="stylesheet" type="text/css">
+<link href="js/slick.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all'%>
@@ -36,7 +39,7 @@
 
      <li class=""style="color:white; padding-left: 5px;">
         <%= link_to users_path  do%>
-        <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Users
+        <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Ranking
         <%end%>
       </li>
 
@@ -81,7 +84,7 @@
       </nav>
     </header>
     <%= yield %>
-
+<script type="text/javascript" src="js/slick.min.js"></script>
   </body>
 </html>
 

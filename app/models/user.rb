@@ -7,10 +7,10 @@ class User < ApplicationRecord
   has_many :studies, dependent: :destroy
   has_many :scores, dependent: :destroy
   has_many :purposes, dependent: :destroy
-  has_many :post_times, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_studies, through: :likes, source: :study
   has_many :contacts, dependent: :destroy
+  has_many :post_times, dependent: :destroy
 
   accepts_nested_attributes_for :scores, :purposes
 

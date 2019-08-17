@@ -1,22 +1,28 @@
+<div class="container">
+      <div class="row">
+        <div class="col-3">
+          <%= search_form_for @search do |f| %>
+    <div>
+        <%= f.search_field :study_title_or_review_or_medium_medium_name_or_genre_genre_name_cont_any %>
+        <%= f.submit "検索" %>
+  　 <% end %>
+    </div>
 
-<h1>投稿一覧</h1>
+          <div class="slider">
+            <div>  <%= image_tag('image1.jpg')%> </div>
+            <div>  <%= image_tag('image2.jpg')%> </div>
+            <div> <%= image_tag('image3.jpg')%> </div>
+          </div>
+      </div>
+        <div class="col-9 study_box">
+   <h1>投稿一覧</h1>
 
- <span><%= link_to "新規投稿", new_study_path %></span>
- <%= search_form_for @search do |f| %>
-  <%= f.search_field :study_title_or_review_or_medium_medium_name_or_genre_genre_name_cont_any %>
-  <div class="actions"><%= f.submit "検索" %></div>
+   <span><%= link_to "新規投稿をする。", new_study_path,class:'btn btn-primary btn-lg btn-block' %></span>
+
+
 <ul class="study-list jscroll">
-　　<% end %>
+
  <table>
- <thead>
-    <tr>
-      <th> Image</th>
-      <th> Title</th>
-      <th> Opinion</th>
-      <th>いいね</th>
-    </tr>
-  </thead>
-  <tbody>
     <% @studies.each do |s| %>
 
     <tr>
@@ -26,10 +32,15 @@
       </td>
       <td><%= link_to s.study_title, study_path(s.id) %></td>
       <td><%= s.review %></td>
-      <td><%= s.liked_users.count %></td>
+      <td><%= s.liked_users.count %>いいね</td>
     </tr>
     <% end %>
-   </tbody>
+
 </table>
-  <%= paginate @studies %>
+<%= paginate @studies %>
 </ul>
+<div id="smooth-scroll">TOPへ</div>
+</div>
+</div>
+</div>
+

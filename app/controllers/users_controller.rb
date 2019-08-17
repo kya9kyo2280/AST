@@ -81,7 +81,10 @@ class UsersController < ApplicationController
     end
 
     def index
-        @users = User.all
+         user_time_count = User.joins(:post_times).group(:user_id).all.sum(:study_time)
+         user_time_ids = Hash[user_time_count.sort_by{ |_, v| -v }].keys
+         @user_ranking= User.find(user_time_ids).sort_by{ |o| user_time_ids.index(o.id)}
+         @users = User.all
     end
 
     def edit
