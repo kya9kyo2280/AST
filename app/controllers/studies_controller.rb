@@ -5,9 +5,10 @@ class StudiesController < ApplicationController
   end
 
   def index
-    @studies = Study.page(params[:page]).per(10)
+    @studies = Study.page(params[:page]).per(9).order(id: "DESC")
     @search = Study.ransack(params[:q])
-    @studies = @search.result.page(params[:page]).per(10)
+    @studies = @search.result.page(params[:page]).per(9).order(id: "DESC")
+    @all_ranks = Study.find(Like.group(:study_id).order('count(study_id) desc').limit(3).pluck(:study_id))
   end
 
   def new

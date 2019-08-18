@@ -1,42 +1,53 @@
 <div class="container">
       <div class="row">
         <div class="col-3">
-          <%= search_form_for @search do |f| %>
+          <div class="card">
+          <span><%= link_to "新規投稿をする。", new_study_path,class:'btn btn-primary btn-lg btn-block' %></span>
+          <div class="card-body">
+        <% @all_ranks.each do |r| %>
+       <div><%= attachment_image_tag r, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg" %></div>
+      <div><%= link_to r.study_title, study_path(r.id) %></div>
+      <div><%= r.liked_users.count %>いいね</div>
+      <% end %>
+        </div>
+         </div>
+      </div>
+
+        <div class="col-9 study_box">
+   <h1>投稿一覧</h1>
+
+<%= search_form_for @search do |f| %>
     <div>
         <%= f.search_field :study_title_or_review_or_medium_medium_name_or_genre_genre_name_cont_any %>
         <%= f.submit "検索" %>
   　 <% end %>
-    </div>
-
-          <div class="slider">
-            <div>  <%= image_tag('image1.jpg')%> </div>
-            <div>  <%= image_tag('image2.jpg')%> </div>
-            <div> <%= image_tag('image3.jpg')%> </div>
-          </div>
-      </div>
-        <div class="col-9 study_box">
-   <h1>投稿一覧</h1>
-
-   <span><%= link_to "新規投稿をする。", new_study_path,class:'btn btn-primary btn-lg btn-block' %></span>
-
+   </div>
 
 <ul class="study-list jscroll">
 
- <table>
+<div class="container study_box clearfix">
+   
     <% @studies.each do |s| %>
+<div class="float-left index_studies">
+  <div class="row">
+        <div class ="col">
+      <div>
+        <div class="card">
+       <%= attachment_image_tag s, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg" ,class: "img-fluid"%>
+      <div class="card-body">
+      <div><%= link_to s.study_title, study_path(s.id) %></div>
+      <div><%= s.medium.medium_name %></div>
+      <div><%= s.genre.genre_name %></div>
+      <div><%= s.liked_users.count %>いいね</div>
+    </div>
+  </div>
+   </div>
+  </div>
+  </div>
 
-    <tr>
-
-      <td>
-       <%= attachment_image_tag s, :image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg" %>
-      </td>
-      <td><%= link_to s.study_title, study_path(s.id) %></td>
-      <td><%= s.review %></td>
-      <td><%= s.liked_users.count %>いいね</td>
-    </tr>
-    <% end %>
-
-</table>
+</div>
+  <% end %>
+</div>
 <%= paginate @studies %>
 </ul>
 <div id="smooth-scroll">TOPへ</div>

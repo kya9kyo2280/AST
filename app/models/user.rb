@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :liked_studies, through: :likes, source: :study
   has_many :contacts, dependent: :destroy
   has_many :post_times, dependent: :destroy
+  attachment :profile_image
 
   accepts_nested_attributes_for :scores, :purposes
 

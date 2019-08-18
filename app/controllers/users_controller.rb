@@ -81,7 +81,7 @@ class UsersController < ApplicationController
     end
 
     def index
-         user_time_count = User.joins(:post_times).group(:user_id).all.sum(:study_time)
+         user_time_count = User.all.joins(:post_times).where(post_times:{ study_day:1.weeks.ago..Time.now}).group(:user_id).sum(:study_time)
          user_time_ids = Hash[user_time_count.sort_by{ |_, v| -v }].keys
          @user_ranking= User.find(user_time_ids).sort_by{ |o| user_time_ids.index(o.id)}
          @users = User.all
@@ -107,7 +107,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-        params.require(:user).permit(:name)
+        params.require(:user).permit(:name,:profile_image)
     end
 
 end

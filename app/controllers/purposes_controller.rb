@@ -2,6 +2,7 @@ class PurposesController < ApplicationController
 
 def new
     @purpose = Purpose.new
+    @score = Score.new
   end
 
   def create

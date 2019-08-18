@@ -1,37 +1,41 @@
-<table>
+<div class="mypage">
+<div class="container">
+      <div class="row">
+ <div class="col-4">
+          <div class="card">
+  <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg',fallback: "no_image2.jpg", size: '200x200' %>
 <%= @user.name %>
-<tr>
-<th>目標スコア</th>
-<td><%= @user.purposes.last.purpose_score %></td>
-<td><%= form_for(@purpose) do |f| %>
+ <div class="card-body">
+<div>目標スコア<%= @user.purposes.last.purpose_score %></div>
+<%= form_for(@purpose) do |f| %>
     <div class="form-group">
       <%= f.label :"目標" %>
       <%= f.number_field :purpose_score, class: "form-control" %>
       <%= f.submit '設定する', class:"btn btn-success" %>
     </div>
   <% end %>
-</td>
-</tr>
-<tr>
-<th>現在スコア</th>
-<td><%= @user.scores.last.current_score %></td>
-<td><%= form_for(@score) do |f| %>
+<div>現在スコア<%= @user.scores.last.current_score %></div>
+<%= form_for(@score) do |f| %>
     <div class="form-group">
       <%= f.label :"現在のスコア" %>
       <%= f.number_field :current_score, class: "form-control" %>
       <%= f.submit '設定する', class:"btn btn-success" %>
     </div>
   <% end %>
-</td>
-</tr>
-<tr>
-<th>目標時間</th>
-<td><%= @purposetime -  @usertime %></td>
-</tr>
-<tr>
-<th>現在時間</th>
-<td><%= @totalstudytime %></td>
-<td><%= form_for(@post_time) do |f| %>
+
+<div>目標時間<%= @purposetime -  @usertime %></div>
+<div>現在時間<%= @totalstudytime %></div>
+
+<th>目標達成</th>
+
+  <td><%= @purposetime -  @usertime -  @totalstudytime %></td>
+  <%= link_to "目標と現在のスコアを変更する", new_purpose_path , class:"btn btn-defult"%>
+</div>
+</div>
+</div>
+<div class="col-8">
+ <h2 class="heading">学習状況</h2>
+ <%= form_for(@post_time) do |f| %>
     <label class="control-label" for="">勉強日</label>
   <%= f.date_select(:study_day,
     use_month_numbers: true,
@@ -42,17 +46,6 @@
       <%= f.submit '追加する', class:"btn btn-success" %>
     </div>
   <% end %>
-</td>
-</tr>
-<tr>
-<th>目標達成</th>
-
-  <td><%= @purposetime -  @usertime -  @totalstudytime %></td>
-</tr>
-
-</table>
-
- <h2 class="heading">学習状況</h2>
  <div id="user_lists"><%= render 'user_list' %></div>
  <div class="more"><%= link_to_next_page @post_times, 'もっと見る', remote: true, id: 'view_more' %></div>
 
@@ -70,4 +63,7 @@
 
 <%= link_to "編集", edit_user_path(@user.id) %>
 <%= link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？" %>
-
+</div>
+</div>
+</div>
+</div>

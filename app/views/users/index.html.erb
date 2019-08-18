@@ -1,15 +1,17 @@
-
-<h2>ランキング</h2>
+<div class="weekranking">
+<h2>週間ランキング</h2>
 
     <table>
       <tbody>
         <% @user_ranking.each do |u| %>
 
         <tr>
-          <td class="align-middle"><%= u.id %></td>
+        <td><%= attachment_image_tag u, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image2.jpg", size: '60x60' %></td>
           <td class="align-middle"><%= link_to u.name, user_path(u.id) %></td>
-           <td class="align-middle"><%= u.post_times.all.sum(:study_time) %></td>
+           <td class="align-middle"><%= u.post_times.where(study_day:1.weeks.ago..Time.now).sum(:study_time) %>時間</td>
+
         </tr>
         <% end %>
       </tbody>
     </table>
+    <div>
