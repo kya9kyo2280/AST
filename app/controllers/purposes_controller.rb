@@ -6,13 +6,18 @@ def new
   end
 
   def create
-    @purpose = Purpose.new(purpose_params)
-    @purpose.user_id = current_user.id
-    if @purpose.save
-      redirect_to user_path(current_user.id)
-    else
-      render :new
-    end
+
+    purpose = Purpose.new
+    purpose.purpose_score = params[:purpose_score]
+    purpose.user_id = current_user.id
+    purpose.save
+    @score = Score.new
+    @score.current_score = params[:current_score]
+    @score.user_id = current_user.id
+    @score.save
+
+    redirect_to user_path(current_user.id)
+
   end
 
   private

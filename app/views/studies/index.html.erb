@@ -1,3 +1,4 @@
+<div class="studypage">
 <div class="container">
       <div class="row">
         <div class="col-3">
@@ -14,10 +15,10 @@
       </div>
 
         <div class="col-9 study_box">
+<div class="title">
    <h1>投稿一覧</h1>
-
 <%= search_form_for @search do |f| %>
-    <div>
+
         <%= f.search_field :study_title_or_review_or_medium_medium_name_or_genre_genre_name_cont_any %>
         <%= f.submit "検索" %>
   　 <% end %>

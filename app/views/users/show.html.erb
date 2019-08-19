@@ -1,69 +1,59 @@
 <div class="mypage">
-<div class="container">
-      <div class="row">
- <div class="col-4">
-          <div class="card">
-  <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg',fallback: "no_image2.jpg", size: '200x200' %>
-<%= @user.name %>
- <div class="card-body">
-<div>目標スコア<%= @user.purposes.last.purpose_score %></div>
-<%= form_for(@purpose) do |f| %>
-    <div class="form-group">
-      <%= f.label :"目標" %>
-      <%= f.number_field :purpose_score, class: "form-control" %>
-      <%= f.submit '設定する', class:"btn btn-success" %>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="card">
+          <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg',fallback: "no_image2.jpg", size: '235x235'%>
+          <%= @user.name %>
+            <div class="card-body">
+              <div>目標スコア: <%= @user.purposes.last.purpose_score %>点</div>
+              <div>現在スコア: <%= @user.scores.last.current_score %>点</div>
+              <div>目標時間: <%= @purposetime -  @usertime %>時間</div>
+              <div>現在時間: <%= @totalstudytime %>時間</div>
+              <th>目標達成まで </th><td><%= @purposetime -  @usertime -  @totalstudytime %>時間</td>
+                <div> <%= link_to "スコアの変更", new_purpose_path %>
+                      <%= link_to "編集", edit_user_path(@user.id) %>
+                      <%= link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？" %>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-9">
+          <h2 class="heading">学習状況</h2>
+          <%= form_for(@post_time) do |f| %>
+             <label class="control-label" for="">勉強日</label>
+             <%= f.date_select(:study_day,use_month_numbers: true,default: Date.today) %>
+              <div class="form-group">
+              <%= f.label :"時間を追加" %>
+              <%= f.select(:study_time,  [-5,-4.5,-4,-3.5,-3,-2.5,-2,-1.5,-1,-0.5,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10],:selected=>1 )%>
+          <%= f.submit '追加する' %>
+              </div>
+          <% end %>
+          <div id="user_lists"><%= render 'user_list' %></div>
+          <div class="more"><%= link_to_next_page @post_times, 'もっと見る', remote: true, id: 'view_more' %></div>
+
+          <h3>投稿内容</h3>
+            <div class= "row" >
+              <% @user.studies.each do |study| %>
+              <div class= "col-2" >
+                <%= attachment_image_tag study, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"%>
+                <div><%= link_to study.study_title, study_path(study.id) %></div>
+              </div>
+              <% end %>
+          </div>
+
+          <h3>いいねしている投稿</h3>
+            <div class= "row" >
+              <% @user.liked_studies.each do |study| %>
+              <div class= "col-2" >
+                <%= attachment_image_tag study, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"%>
+                <div><%= link_to study.study_title, study_path(study.id) %></div>
+              </div>
+              <% end %>
+              </div>
+
+      </div>
     </div>
-  <% end %>
-<div>現在スコア<%= @user.scores.last.current_score %></div>
-<%= form_for(@score) do |f| %>
-    <div class="form-group">
-      <%= f.label :"現在のスコア" %>
-      <%= f.number_field :current_score, class: "form-control" %>
-      <%= f.submit '設定する', class:"btn btn-success" %>
-    </div>
-  <% end %>
+  </div>
+</div>
 
-<div>目標時間<%= @purposetime -  @usertime %></div>
-<div>現在時間<%= @totalstudytime %></div>
-
-<th>目標達成</th>
-
-  <td><%= @purposetime -  @usertime -  @totalstudytime %></td>
-  <%= link_to "目標と現在のスコアを変更する", new_purpose_path , class:"btn btn-defult"%>
-</div>
-</div>
-</div>
-<div class="col-8">
- <h2 class="heading">学習状況</h2>
- <%= form_for(@post_time) do |f| %>
-    <label class="control-label" for="">勉強日</label>
-  <%= f.date_select(:study_day,
-    use_month_numbers: true,
-    default: Date.today) %>
-    <div class="form-group">
-      <%= f.label :"時間を追加" %>
-      <%= f.select(:study_time,  [-2,-1,-0.5,0.5,1,1.5,2],:selected=>1 )%>
-      <%= f.submit '追加する', class:"btn btn-success" %>
-    </div>
-  <% end %>
- <div id="user_lists"><%= render 'user_list' %></div>
- <div class="more"><%= link_to_next_page @post_times, 'もっと見る', remote: true, id: 'view_more' %></div>
-
-
-<h2>投稿内容</h2>
-<% @user.studies.each do |study| %>
-  <%= study.study_title %>
-  <%= study.review %>
-  <hr>
-<% end %>
-<h3>いいねしている投稿</h3>
-<% @user.liked_studies.each do |study| %>
-  <%= study.study_title %>
-<% end %>
-
-<%= link_to "編集", edit_user_path(@user.id) %>
-<%= link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？" %>
-</div>
-</div>
-</div>
-</div>
