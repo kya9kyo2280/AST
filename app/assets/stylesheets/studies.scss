@@ -19,11 +19,6 @@ ul.study-list {
     width: 100%;
 }
 
-/*slick setting*/
-.slick-prev:before,
-.slick-next:before {
-    color: #000;
-}
 
 .studypage{
 	background-image: url("image5.jpg");
@@ -37,4 +32,10 @@ ul.study-list {
 
 .card{
     margin : 10px;
+    }
+
+.studydetail{
+    background-image: url("image6.jpg");
+    padding-top: 10px;
+    background-size:100% auto;
     }

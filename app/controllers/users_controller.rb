@@ -6,6 +6,11 @@ class UsersController < ApplicationController
         @score = Score.new
         @post_time = PostTime.new
         @totalstudytime =  @user.post_times.all.sum(:study_time)
+          respond_to do |format|
+           format.html
+           format.json {render:json => @totalstudytime}
+           format.js
+    end
         @usertime =  if @user.scores.last.current_score < 201
                         0
                      elsif @user.scores.last.current_score < 251
@@ -40,6 +45,12 @@ class UsersController < ApplicationController
                         3400
                      else
                         3900
+                     end
+
+                     respond_to do |format|
+                     format.html
+                     format.json {render:json => @usertime}
+                     format.js
                      end
 
         @purposetime = if @user.purposes.last.purpose_score < 201
@@ -77,7 +88,13 @@ class UsersController < ApplicationController
                      else
                         3900
                      end
-                     @post_times = @user.post_times.order(study_day: "DESC").page(params[:page]).per(3)
+                     respond_to do |format|
+                     format.html
+                     format.json {render:json => @purposetime}
+                     format.js
+                     end
+
+        @post_times = @user.post_times.order(study_day: "DESC").page(params[:page]).per(3)
     end
 
     def index
@@ -101,7 +118,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.destroy
     redirect_to root_path
-    
+
     end
 
   private

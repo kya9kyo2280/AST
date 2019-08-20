@@ -1,19 +1,20 @@
-<h1>お問合せ一覧</h1>
 
- <table>
- <thead>
+<table class="table table-striped">
+<h1>お問合せ一覧</h1>
+<thead>
     <tr>
-      <th> Title</th>
-      <th> Opinion</th>
+      <th>name</th>
+      <th>title</th>
+      <th>message</th>
     </tr>
   </thead>
   <tbody>
-    <% @contacts.each do |c| %>
-
+      <% @contacts.each do |c| %>
     <tr>
-
-      <td><%= link_to c.contact_title, admin_contact_path(c.id) %></td>
-      <td><%= c.contact_message %></td>
+  </div>
+     <td><%= c.user.name %></td>
+     <td><%= link_to c.contact_title, admin_contact_path(c.id) %></td>
+    <td><%= c.contact_message %></td>
 
     </tr>
     <% end %>

@@ -15,6 +15,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require cocoon
+//= require Chart.min
 //= require jquery.jscroll.min.js
 //= require bootstrap-sprockets
 //= require turbolinks
@@ -35,8 +36,6 @@ $(document).on('turbolinks:load', function() {
 });
 
 $(document).on('turbolinks:load', function() {
-$('.slider').slick({
-    autoplay:true,
-    autoplaySpeed:5000
-});
+  $('.more').more({
+  });
 });

@@ -2,16 +2,11 @@
 <html>
   <head>
     <%= csrf_meta_tags %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-     <link href="js/slick-theme.css" rel="stylesheet" type="text/css">
-<link href="js/slick.css" rel="stylesheet" type="text/css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+    <%= stylesheet_link_tag 'application', media:'all'%>
+    <%= javascript_include_tag 'application','data-turbolinks-track':'reload' %>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <%= stylesheet_link_tag    'application', media: 'all'%>
-    <%= javascript_include_tag 'application' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>AST</title>
   </head>
 
@@ -84,13 +79,9 @@
       </nav>
     </header>
     <%= yield %>
-<script type="text/javascript" src="js/slick.min.js"></script>
   </body>
 </html>
 
 <footer>
-      <p>
-      CopyRight Infratop.inc
-      </p>
     </footer>
 

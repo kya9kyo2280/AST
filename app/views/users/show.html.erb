@@ -8,9 +8,14 @@
             <div class="card-body">
               <div>目標スコア: <%= @user.purposes.last.purpose_score %>点</div>
               <div>現在スコア: <%= @user.scores.last.current_score %>点</div>
-              <div>目標時間: <%= @purposetime -  @usertime %>時間</div>
-              <div>現在時間: <%= @totalstudytime %>時間</div>
-              <th>目標達成まで </th><td><%= @purposetime -  @usertime -  @totalstudytime %>時間</td>
+               <div>目標時間: <%= @purposetime -  @usertime %>時間</div>
+              <canvas id="myChart" width="400" height="400"></canvas>
+              <script>
+                var totalstudytime = <%= @totalstudytime %>, usertime = <%= @usertime %>,purposetime = <%= @purposetime %>
+                draw_graph();
+              </script>
+              <div>学習時間: <%= @totalstudytime %>時間</div>
+              <th>残り時間 </th><td><%= @purposetime -  @usertime -  @totalstudytime %>時間</td>
                 <div> <%= link_to "スコアの変更", new_purpose_path %>
                       <%= link_to "編集", edit_user_path(@user.id) %>
                       <%= link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？" %>
