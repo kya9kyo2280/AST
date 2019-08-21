@@ -36,6 +36,8 @@ $(document).on('turbolinks:load', function() {
 });
 
 $(document).on('turbolinks:load', function() {
-  $('.more').more({
+  $('.jscroll').jscroll({
+    contentSelector: '.study-list',
+    nextSelector: 'span.next:last a'
   });
 });

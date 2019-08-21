@@ -1,0 +1,10 @@
+<table>
+      <tbody>
+        <% @post_times.each do |time| %>
+        <tr>
+            <td class="align-middle"><%= time.study_day%></td>
+          <td class="align-middle"><%= time.study_time %>時間</td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>

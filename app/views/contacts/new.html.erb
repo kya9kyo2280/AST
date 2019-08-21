@@ -8,13 +8,13 @@
     <div class = "contact-body">
 <%= form_for(@contact) do |f| %>
 
-    <h4>タイトル</h4>
+    <div>タイトル</div>
     <%= f.text_field :contact_title %>
 
-    <h4>本文</h4>
+    <div>本文</div>
     <%= f.text_area :contact_message %>
 
-    <%= f.submit '投稿' %>
+    <%= f.submit '送信' %>
 
 <% end %>
 </div>

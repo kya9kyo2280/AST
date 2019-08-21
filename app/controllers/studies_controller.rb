@@ -8,7 +8,7 @@ class StudiesController < ApplicationController
     @studies = Study.page(params[:page]).per(6).order(id: "DESC")
     @search = Study.ransack(params[:q])
     @studies = @search.result.page(params[:page]).per(6).order(id: "DESC")
-    @all_ranks = Study.find(Like.group(:study_id).order('count(study_id) desc').limit(3).pluck(:study_id))
+    @all_ranks = Study.find(Like.group(:study_id).order('count(study_id) desc').limit(5).pluck(:study_id))
   end
 
   def new
@@ -36,6 +36,9 @@ class StudiesController < ApplicationController
     study = Study.find(params[:id])
     study.destroy
     redirect_to root_path
+  end
+
+  def about
   end
 
   private
