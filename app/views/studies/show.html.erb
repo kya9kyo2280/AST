@@ -1,35 +1,60 @@
 <div class="studydetail">
-<div class="container">
+  <div class="container">
       <div class="row">
         <div class="col-4">
-<%= attachment_image_tag @study, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %>
+          <%= attachment_image_tag @study, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %>
+            <h5 class="reviewer">レビュアー　 <%= link_to @study.user.name, user_path(@study.user.id) %></h5>
         </div>
-         <div class="col-4">
+        <div class="col-5">
+              <h4 class="detailtitle">タイトル</h4>
+                  <h5 class="detailbody"><%= @study.study_title %></h5>
+              <h4 class="detailtitle">媒体</h4>
+                  <h5 class="detailbody"><%= @study.medium.medium_name %></h5>
+              <h4 class="detailtitle">ジャンル</h4>
+                  <h5 class="detailbody"><%= @study.genre.genre_name %></h5>
+              <h4 class="detailtitle">本文</h4>
+                  <h5 class="detailbody"><%= @study.review %></h5>
+              <h4 class="detailtitle">いいね件数: <%= @study.likes.count %></h4>
+               <% if user_signed_in? %>
+                  <% if current_user.already_liked?(@study) %>
+                   <%= link_to study_likes_path(@study), method: :delete do %>
+                          <i class="fas fa-thumbs-up"style="font-size: 20px;">いいねを取り消す</i>
+                          <% end %>
+                            <% else %>
+                       <%= link_to study_likes_path(@study), method: :post do %>
+                     <i class="far fa-thumbs-up" style="font-size: 20px;"> いいね！</i>
+                       <% end %>
+                  <% end %>
+              <% end %>
+               <%= form_for [@study, @study_comment] do |f| %>
+                 <%= f.text_field :comment %><br>
+                 <%= f.submit 'コメントする' %>
+               <% end %>
+                <table class="table table-striped">
+                  <h4 class="detailtitle">コメント一覧</h4>
+                   <tbody>
+                     <% @study_comments.each do |c| %>
+                    <tr>
+                    <td><div>
+                           <%= link_to (user_path(c.id)) do %>
+                           <%= attachment_image_tag c.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
+                           <% end %>
+                        </div>
+                          <!--  <%= link_to (c.user.name), user_path(c.user.id) %> -->
+                     </td>
+                      <td> <%= c.comment %></td>
+                   </tr>
+                 <% end %>
+                  </tbody>
+                 </table>
 
-<h4>タイトル</h4>
-<h5><%= @study.study_title %></h5>
-<h4>媒体</h4>
-<h5><%= @study.medium.medium_name %></h5>
-<h4>ジャンル</h4>
-<h5><%= @study.genre.genre_name %></h5>
-
-<h4>本文</h4>
-<h5><%= @study.review %></h5>
-<h4>いいね件数: <%= @study.likes.count %></h4>
-<% if current_user.already_liked?(@study) %>
-  <%= button_to 'いいねを取り消す', study_like_path(@study), method: :delete %>
-<% else %>
-  <%= link_to study_likes_path(@study), method: :post do %>
-  <i class="fas fa-thumbs-up" style="font-size: 20px;"> いいね！</i>
-  <% end %>
-<% end %>
-<h4>いいねしたユーザー</h4>
-<% @study.liked_users.each do |user| %>
-  <li><%= user.name %></li>
-<% end %>
-<%= link_to "編集", edit_study_path(@study.id) %>
-<%= link_to "削除", study_path(@study), method: :delete, "data-confirm" => "本当に消しますか？" %>
-		</div>
-	</div>
-</div>
+                  <div>
+                   <% if user_signed_in? && @study.user_id == current_user.id %>
+                   <%= link_to "編集", edit_study_path(@study.id) %>
+                   <%= link_to "削除", study_path(@study), method: :delete, "data-confirm" => "本当に消しますか？" %>
+                   <% end %>
+                 </div>
+		    </div>
+	   </div>
+  </div>
 </div>

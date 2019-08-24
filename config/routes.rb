@@ -4,7 +4,11 @@ Rails.application.routes.draw do
    :registrations => 'users/registrations'
   }
 
-  devise_for :admins
+  devise_for :admins, :controllers => {
+   :registrations => 'admins/registrations',
+   :sessions => 'admins/sessions'
+
+  }
 
   resources :genres
   resources :events
@@ -17,7 +21,8 @@ Rails.application.routes.draw do
     resources :contact_comments
   end
   resources :studies do
-    resources :likes
+    resource :likes, only: [:create, :destroy]
+    resource :study_comments, only: [:create, :destroy]
   end
 
 

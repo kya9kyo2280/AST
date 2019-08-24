@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-
+    before_action :authenticate_user!
 def show
     @contact = Contact.find(params[:id])
   end

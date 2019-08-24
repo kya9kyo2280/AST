@@ -4,10 +4,10 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media:'all'%>
     <%= javascript_include_tag 'application','data-turbolinks-track':'reload' %>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>AST</title>
+
   </head>
 
   <body>
@@ -20,6 +20,9 @@
           <ul class="list-group list-group-horizontal nav-list ">
 
            <% if admin_signed_in? %>
+               <li class="list-inline-item nav-list-item">
+                <%= link_to "レビュー一覧", admin_studies_path %>
+              </li>
               <li class="list-inline-item nav-list-item">
                 <%= link_to "ジャンルを追加", new_admin_genre_path %>
               </li>

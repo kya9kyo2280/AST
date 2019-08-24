@@ -1,5 +1,5 @@
 class PurposesController < ApplicationController
-
+    before_action :authenticate_user!
 def new
     @purpose = Purpose.new
     @score = Score.new

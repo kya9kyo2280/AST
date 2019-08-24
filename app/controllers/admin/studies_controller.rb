@@ -1,4 +1,5 @@
 class Admin::StudiesController < ApplicationController
+  before_action :authenticate_admin!
 	def show
     @study = Study.find(params[:id])
   end
@@ -10,7 +11,7 @@ class Admin::StudiesController < ApplicationController
   def destroy
     study = Study.find(params[:id])
     study.destroy
-    redirect_to root_path
+    redirect_to admin_studies_path
   end
 
   private

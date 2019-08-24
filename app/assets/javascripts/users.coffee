@@ -33,7 +33,7 @@ window.draw_graph = ->
              },
              tooltips: {
                  callbacks: {
-                   label: (tooltipItem) -> ["学習時間:"+totalstudytime+"時間", "達成まで"+(purposetime -  usertime -  totalstudytime)+"時間"]
+                   label: (tooltipItem) -> ["グラフ"]
                  }
              }
         }

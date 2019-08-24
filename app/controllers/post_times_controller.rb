@@ -1,4 +1,5 @@
 class PostTimesController < ApplicationController
+      before_action :authenticate_user!
   def new
      @post_time = PostTime.new
   end

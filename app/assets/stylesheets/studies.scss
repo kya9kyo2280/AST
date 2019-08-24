@@ -9,33 +9,19 @@ nav.pagination {
 ul.study-list {
   padding: 0;
 }
-.slider{
-    margin: 100px auto;
-    height: 600;
-    width: 300;
-}
-.slider img{
-    height: auto;
-    width: 100%;
-}
 
 
 .studypage{
-	background-image: url("image5.jpg");
+	background-color: #E6E7E8;
     padding-top: 10px;
-    background-size:100% auto;
     }
 
 .title{
     padding-bottom: 50px;
     }
 
-.card{
-    margin : 10px;
-    }
-
 .studydetail{
-    background-image: url("image6.jpg");
+    background-color: #E6E7E8;
     padding-top: 10px;
     background-size:100% auto;
     }
@@ -44,10 +30,22 @@ ul.study-list {
 #smooth-scroll{
     text-align:right
     }
-    h4 {
+
+
+ .reviewer {
+    background-color: rgba(255,255,255,0.5);
+    width: 300px;
+}
+
+.studytitle {
+    background-color: rgba(0,100,255,0.5);
+}
+
+.detailtitle {
     background-color: rgba(255,255,0,0.5);
 }
 
- h5 {
+ .detailbody {
     background-color: rgba(255,255,255,0.5);
 }
+

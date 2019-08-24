@@ -1,5 +1,5 @@
 class ScoresController < ApplicationController
-
+    before_action :authenticate_user!
 def new
     @score = Score.new
     

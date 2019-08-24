@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row">
       <div class="col-3">
-        <div class="card">
-          <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg',fallback: "no_image2.jpg", size: '235x235'%>
+        <div class="card" style="text-align: center">
+          <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg',fallback: "no_image2.jpg", size: '255x255'%>
           <%= @user.name %>
             <div class="card-body">
               <div>目標スコア: <%= @user.purposes.last.purpose_score %>点</div>
@@ -14,15 +14,17 @@
                 var totalstudytime = <%= @totalstudytime %>, usertime = <%= @usertime %>,purposetime = <%= @purposetime %>
                 draw_graph();
               </script>
-                <div> <%= link_to "スコアの変更", new_purpose_path %>
-                      <%= link_to "編集", edit_user_path(@user.id) %>
-                      <%= link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？" %>
-                </div>
+              <% if @user.id == current_user.id %>
+                <div> <%= link_to "スコアの変更", new_purpose_path, class:"btn-sm btn-primary btn-block" %></div>
+                      <div><%= link_to "編集", edit_user_path(@user.id), class:"btn-sm btn-success btn-block" %></div>
+                      <div><%= link_to "退会", user_path(@user), class:"btn-sm btn-danger btn-block", method: :delete , "data-confirm" => "本当に退会しますか？" %>
+                      </div>
+                      <% end %>
             </div>
         </div>
       </div>
       <div class="col-9">
-          <h2 class="heading">学習状況</h2>
+          <h2 class="mypageindex">学習状況</h2>
           <%= form_for(@post_time) do |f| %>
              <label class="control-label" for="">勉強日</label>
              <%= f.date_select(:study_day,use_month_numbers: true,default: Date.today) %>
@@ -33,25 +35,27 @@
               </div>
           <% end %>
           <div id="user_lists"><%= render 'user_list' %></div>
+           <% if @user.id == current_user.id %>
           <div class="more"><%= link_to_next_page @post_times, 'もっと見る', remote: true, id: 'view_more' %></div>
+          <% end %>
 
-          <h3>投稿内容</h3>
+          <h3 class="mypageindex">投稿内容</h3>
             <div class= "row" >
               <% @user.studies.each do |study| %>
               <div class= "col-2" >
-                <div class = "card"style="width: 100px;">
-                <%= attachment_image_tag study, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"%>
+                <div class = "mb-3 card"style="width: 100px;mb-3">
+                <%= attachment_image_tag study, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size: '100x100'%>
                 <%= link_to study.study_title, study_path(study.id) %>
             </div>
           </div>
               <% end %>
           </div>
 
-          <h3>いいねしている投稿</h3>
+          <h3 class="mypageindex">いいねしている投稿</h3>
             <div class= "row" >
               <% @user.liked_studies.each do |study| %>
               <div class= "col-2" >
-                <div class = "card"style="width: 100px;">
+                <div class = "mb-3 card"style="width: 100px;">
                 <%= attachment_image_tag study, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"%>
                 <%= link_to study.study_title, study_path(study.id) %>
             </div>

@@ -1,13 +1,4 @@
 <h1>投稿一覧</h1>
-<div>
- <%= link_to "ジャンルを追加", new_admin_genre_path, class: "btn w-100 btn-add" %>
-      </div>
- <%= link_to "媒体を追加", new_admin_medium_path, class: "btn w-100 btn-add" %>
-
- <%= link_to "ユーザーズ", admin_users_path, class: "btn w-100 btn-add" %>
-      </div>
- <%= link_to "お問合せ一覧", admin_contacts_path, class: "btn w-100 btn-add" %>
-      </div>
   <table class="table table-striped">
   <thead>
     <tr>
@@ -23,7 +14,7 @@
 
       <td>
        <div>
-        <%= attachment_image_tag s, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %>
+        <%= attachment_image_tag s, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg",size: '50x50' %>
        </div>
       </td>
       <td><%= link_to s.study_title, admin_study_path(s.id) %></td>

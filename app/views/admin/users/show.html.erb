@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="col-9">
-          <h2 class="heading">学習状況</h2>
+          <h2 class="mypageindex">学習状況</h2>
           <%= form_for(@post_time) do |f| %>
              <label class="control-label" for="">勉強日</label>
              <%= f.date_select(:study_day,use_month_numbers: true,default: Date.today) %>
@@ -35,7 +35,7 @@
           <div id="user_lists"><%= render 'user_list' %></div>
           <div class="more"><%= link_to_next_page @post_times, 'もっと見る', remote: true, id: 'view_more' %></div>
 
-          <h3>投稿内容</h3>
+          <h3 class="mypageindex">投稿内容</h3>
             <div class= "row" >
               <% @user.studies.each do |study| %>
               <div class= "col-2" >
@@ -47,7 +47,7 @@
               <% end %>
           </div>
 
-          <h3>いいねしている投稿</h3>
+          <h3 class="mypageindex">いいねしている投稿</h3>
             <div class= "row" >
               <% @user.liked_studies.each do |study| %>
               <div class= "col-2" >

@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-
+  before_action :authenticate_admin!
 def show
         @user = User.find(params[:id])
         @purpose = Purpose.new
@@ -10,7 +10,7 @@ def show
            format.html
            format.json {render:json => @totalstudytime}
            format.js
-    end
+            end
         @usertime =  if @user.scores.last.current_score < 201
                         0
                      elsif @user.scores.last.current_score < 251
@@ -111,13 +111,13 @@ def show
     def update
         user = User.find(params[:id])
         user.update(user_params)
-        redirect_to user_path(user.id)
+        redirect_to admin_users_path
     end
 
     def destroy
     user = User.find(params[:id])
     user.destroy
-    redirect_to root_path
+    redirect_to admin_users_path
 
     end
 

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+     before_action :authenticate_user!
 
   def show
         @user = User.find(params[:id])
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
            format.html
            format.json {render:json => @totalstudytime}
            format.js
-    end
+          end
         @usertime =  if @user.scores.last.current_score < 201
                         0
                      elsif @user.scores.last.current_score < 251
@@ -106,6 +107,9 @@ class UsersController < ApplicationController
 
     def edit
         @user = User.find(params[:id])
+        if @user.id != current_user.id
+            redirect_to user_path(@current_user.id)
+        end
     end
 
     def update
@@ -115,9 +119,9 @@ class UsersController < ApplicationController
     end
 
     def destroy
-    user = User.find(params[:id])
-    user.destroy
-    redirect_to root_path
+        user = User.find(params[:id])
+        user.destroy
+        redirect_to root_path
 
     end
 

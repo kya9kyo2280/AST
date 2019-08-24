@@ -1,68 +1,98 @@
 <div class="studypage">
-<div class="container">
-      <div class="row">
-        <div class="col-3">
-          <div class="card ">
-          <span><%= link_to "新規投稿をする。", new_study_path,class:'btn btn-primary btn-lg btn-block' %></span>
-          <div class="card-body">
-        <% @all_ranks.each do |r| %>
-        <div class="row">
-          <div class="col-4">
-       <%= attachment_image_tag r, :image, :fill, 70, 70, format: 'jpeg', fallback: "no_image.jpg" %>
-       </div>
-         <div class="col-8">
-      <table class="table" >
-              <tr>
-                <th><%= link_to r.study_title, study_path(r.id) %></th>
-              </tr>
-              <tr>
-                <td><%= r.liked_users.count %>いいね</td>
-              </tr>
-            </table>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+          <div class="card " >
+            <% if user_signed_in? %>
+                <span><%= link_to "新規投稿をする。", new_study_path,class:'btn btn-primary btn-lg btn-block' %></span>
+            <%else%>
+              <h3 class="btn btn-info">いいねランキング</h3>
+                <% end %>
+            <div class="card-body">
+                <% @all_ranks.each do |r| %>
+                   <div class="row">
+                      <div class="col-4">
+                         <%= link_to (study_path(r.id)) do %>
+                         <%= attachment_image_tag r, :image, :fill, 70, 70, format: 'jpeg', fallback: "no_image.jpg" %>
+                         <% end %>
+                      </div>
+                      <div class="col-8">
+                          <table class="table" >
+                            <tr>
+                              <th><%= truncate(r.study_title, length: 7, :omission => "...") %></th>
+                            </tr>
+                            <tr>
+                              <td>
+                                <% if user_signed_in? %>
+                                    <% if current_user.already_liked?(r) %>
+                                      <%= link_to study_likes_path(r), method: :delete do %>
+                                        <i class="fas fa-thumbs-up"style="font-size: 20px;"></i> <%= r.liked_users.count %>
+                                      <% end %>
+                                    <% else %>
+                                      <%= link_to study_likes_path(r), method: :post do %>
+                                         <i class="far fa-thumbs-up" style="font-size: 20px;"></i> <%= r.liked_users.count %>
+                                     <% end %>
+                                  <% end %>
+                                  <% else %>
+                                  いいね <%= r.liked_users.count %>
+                                <% end %>
+                            </td>
+                            </tr>
+                          </table>
+                    </div>
+                  </div>
+                <% end %>
           </div>
-    </div>
-      <% end %>
-        </div>
          </div>
       </div>
 
-        <div class="col-9 study_box">
-<div class="title">
-   <h1>レビュー 一覧</h1>
-<%= search_form_for @search do |f| %>
+      <div class="col-9 study_box">
+        <div class="title">
+          <h1 class="studytitle">レビュー 一覧</h1>
+            <%= search_form_for @search do |f| %>
+              <%= f.search_field :study_title_or_review_or_medium_medium_name_or_genre_genre_name_cont_any %>
+              <%= f.submit "検索" %>
+  　         <% end %>
+        </div>
 
-        <%= f.search_field :study_title_or_review_or_medium_medium_name_or_genre_genre_name_cont_any %>
-        <%= f.submit "検索" %>
-  　 <% end %>
-   </div>
-
-<ul class="study-list jscroll">
-
-<div class="container study_box clearfix">
-   
-    <% @studies.each do |s| %>
-<div class="float-left index_studies">
-  <div class="row">
-        <div class ="col">
-        <div class="card">
-       <%= attachment_image_tag s, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg" ,class: "img-fluid"%>
-      <div class="card-body">
-      <div><%= link_to s.study_title, study_path(s.id) %></div>
-      <div><%= s.medium.medium_name %></div>
-      <div><%= s.genre.genre_name %></div>
-      <div><%= s.liked_users.count %>いいね</div>
+          <ul class="study-list jscroll">
+            <div class="container study_box clearfix" >
+                <% @studies.each do |s| %>
+              <div class="float-left index_studies">
+                <div class="row">
+                  <div class ="col">
+                     <div class="card" style="margin: 20px;">
+                         <%= link_to (study_path(s.id)) do %>
+                          <%= attachment_image_tag s, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg",class: "img-fluid" %>
+                          <% end %>
+                        <div class="card-body">
+                          <div><%= truncate(s.study_title, length: 12, :omission => "...") %></div>
+                            <div><%= s.medium.medium_name %></div>
+                            <div><%= s.genre.genre_name %></div>
+                            <div>
+                             <% if user_signed_in? %>
+                                <% if current_user.already_liked?(s) %>
+                                 <%= link_to study_likes_path(s), method: :delete do %>
+                                  <i class="fas fa-thumbs-up"style="font-size: 20px;"></i> <%= s.liked_users.count %>
+                                 <% end %>
+                                <% else %>
+                                 <%= link_to study_likes_path(s), method: :post do %>
+                                  <i class="far fa-thumbs-up" style="font-size: 20px;"></i> <%= s.liked_users.count %>
+                                 <% end %>
+                                <% end %>
+                             <% end %>
+                            </div>
+                        </div>
+                   </div>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+          </div>
+              <%= paginate @studies %>
+        </ul>
+            <div id="smooth-scroll">  <%= image_tag 'image4.png'%></div>
     </div>
   </div>
-  </div>
-  </div>
-
-</div>
-  <% end %>
-</div>
-<%= paginate @studies %>
-</ul>
-<div id="smooth-scroll">  <%= image_tag 'image4.png'%></div>
-</div>
-</div>
 </div>
 

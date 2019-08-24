@@ -34,10 +34,8 @@ $(document).on('turbolinks:load', function() {
     $("html,body").animate({scrollTop:0}, "300");
   });
 });
+$(document).on 'turbolinks:load', -> ('.myChart').myChart
 
-$(document).on('turbolinks:load', function() {
-  $('.jscroll').jscroll({
-    contentSelector: '.study-list',
-    nextSelector: 'span.next:last a'
-  });
-});
+$(document).on 'turbolinks:load', -> ('.studyChart').studyChart
+
+
