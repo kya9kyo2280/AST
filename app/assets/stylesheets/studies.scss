@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 nav.pagination {
   display: none;
 }
@@ -49,3 +55,14 @@ ul.study-list {
     background-color: rgba(255,255,255,0.5);
 }
 
+
+.studygarph {
+    height: 400px;
+    width: 400px;
+    float: left;
+}
+
+.studydate {
+    width: 400px;
+    float: left;
+}

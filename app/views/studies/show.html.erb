@@ -40,9 +40,10 @@
                            <%= attachment_image_tag c.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
                            <% end %>
                         </div>
-                          <!--  <%= link_to (c.user.name), user_path(c.user.id) %> -->
+                           <%= link_to (c.user.name), user_path(c.user.id) %>
                      </td>
                       <td> <%= c.comment %></td>
+                      <td><% link_to "削除", study_study_comments_path(@study), class: "btn btn-success btn-sm", method: :delete, "data-confirm" => "本当に消しますか？"%><td>
                    </tr>
                  <% end %>
                   </tbody>

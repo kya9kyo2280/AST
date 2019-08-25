@@ -94,8 +94,18 @@ class UsersController < ApplicationController
                      format.json {render:json => @purposetime}
                      format.js
                      end
+        @post_times = @user.post_times.order(study_day: "DESC").page(params[:page]).per(6)
+        @graphtimes =  @user.post_times.order(study_day: "DESC").limit(6).reverse
+        @timeline = Array.new
+        @graphtimes.each do |graphtime|
+            @timeline.push(graphtime.study_time)
+        end
+        @graphdays =  @user.post_times.order(study_day: "DESC").limit(6).reverse
+        @dayline = Array.new
+        @graphdays.each do |graphday|
+            @dayline.push(graphday.study_day.to_s)
+        end
 
-        @post_times = @user.post_times.order(study_day: "DESC").page(params[:page]).per(3)
     end
 
     def index

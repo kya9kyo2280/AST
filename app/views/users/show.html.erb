@@ -9,10 +9,9 @@
               <div>目標スコア: <%= @user.purposes.last.purpose_score %>点</div>
               <div>現在スコア: <%= @user.scores.last.current_score %>点</div>
                <div>目標時間: <%= @purposetime -  @usertime %>時間</div>
-              <canvas id="myChart" width="400" height="400"></canvas>
+              <canvas id="myChart" width="200" height="200"></canvas>
               <script>
                 var totalstudytime = <%= @totalstudytime %>, usertime = <%= @usertime %>,purposetime = <%= @purposetime %>
-                draw_graph();
               </script>
               <% if @user.id == current_user.id %>
                 <div> <%= link_to "スコアの変更", new_purpose_path, class:"btn-sm btn-primary btn-block" %></div>
@@ -24,26 +23,36 @@
         </div>
       </div>
       <div class="col-9">
-          <h2 class="mypageindex">学習状況</h2>
-          <%= form_for(@post_time) do |f| %>
-             <label class="control-label" for="">勉強日</label>
-             <%= f.date_select(:study_day,use_month_numbers: true,default: Date.today) %>
-              <div class="form-group">
-              <%= f.label :"時間を追加" %>
-              <%= f.select(:study_time,  [-5,-4.5,-4,-3.5,-3,-2.5,-2,-1.5,-1,-0.5,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10],:selected=>1 )%>
-          <%= f.submit '追加する' %>
+          <h2 class="mypageindex">最近の学習状況</h2>
+            <div class="main clearfix">
+              <div class="studygarph">
+                 <canvas id="studyChart" width="200" height="200"></canvas>
+                  <script>
+                    var graphdays = <%== @dayline %>, graphtimes = <%= @timeline %>
+                  </script>
               </div>
-          <% end %>
-          <div id="user_lists"><%= render 'user_list' %></div>
-           <% if @user.id == current_user.id %>
-          <div class="more"><%= link_to_next_page @post_times, 'もっと見る', remote: true, id: 'view_more' %></div>
-          <% end %>
+                <div class="studydate ">
+                 <%= form_for(@post_time) do |f| %>
+                   <label class="control-label" for="">勉強日</label>
+                   <%= f.date_select(:study_day,use_month_numbers: true,default: Date.today) %>
+                    <div class="form-group">
+                     <%= f.label :"時間を追加" %>
+                      <%= f.select(:study_time,  [-5,-4.5,-4,-3.5,-3,-2.5,-2,-1.5,-1,-0.5,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10],:selected=>1 )%>
+                      <%= f.submit '追加する' %>
+                   </div>
+                      <% end %>
+                  <div id="user_lists"><%= render 'user_list' %></div>
+                   <% if @user.id == current_user.id %>
+                      <div class="more"><%= link_to_next_page @post_times, 'もっと見る', remote: true, id: 'view_more' %></div>
+                    <% end %>
+                </div>
+            </div>
 
-          <h3 class="mypageindex">投稿内容</h3>
+             <h3 class="mypageindex">投稿内容</h3>
             <div class= "row" >
               <% @user.studies.each do |study| %>
               <div class= "col-2" >
-                <div class = "mb-3 card"style="width: 100px;mb-3">
+                <div class = "mb-3 card"style="width: 100px;">
                 <%= attachment_image_tag study, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size: '100x100'%>
                 <%= link_to study.study_title, study_path(study.id) %>
             </div>
