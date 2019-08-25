@@ -14,19 +14,12 @@
               <h4 class="detailtitle">本文</h4>
                   <h5 class="detailbody"><%= @study.review %></h5>
               <h4 class="detailtitle">いいね件数: <%= @study.likes.count %></h4>
-                  <% if current_user.already_liked?(@study) %>
-                    <%= button_to 'いいねを取り消す', study_like_path(@study), method: :delete %>
-                     <% else %>
-                       <%= link_to study_likes_path(@study), method: :post do %>
-                     <i class="fas fa-thumbs-up" style="font-size: 20px;"> いいね！</i>
-                       <% end %>
-                  <% end %>
+                  
             <h4>いいねしたユーザー</h4>
                 <% @study.liked_users.each do |user| %>
                   <li><%= user.name %></li>
                 <% end %>
-                <%= link_to "編集", edit_study_path(@study.id) %>
-                <%= link_to "削除", study_path(@study), method: :delete, "data-confirm" => "本当に消しますか？" %>
+                <%= link_to "削除", admin_study_path(@study), method: :delete, "data-confirm" => "本当に消しますか？" %>
 		    </div>
 	   </div>
   </div>

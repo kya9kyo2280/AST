@@ -94,7 +94,7 @@ def show
                      format.js
                      end
 
-        @post_times = @user.post_times.order(study_day: "DESC").page(params[:page]).per(3)
+        @post_times = @user.post_times.order(study_day: "DESC").page(params[:page]).per(6)
     end
 
     def index

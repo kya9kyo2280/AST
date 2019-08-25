@@ -18,17 +18,18 @@
 //= require Chart.min
 //= require jquery.jscroll.min.js
 //= require bootstrap-sprockets
+//= require turbolinks
 //= require_tree .
 
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   $('.jscroll').jscroll({
     contentSelector: '.study-list',
     nextSelector: 'span.next:last a'
   });
 });
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   $("#smooth-scroll").click(function() {
     $("html,body").animate({scrollTop:0}, "300");
   });
