@@ -15,7 +15,7 @@ def create
 
   def destroy
   study = Study.find(params[:study_id])
-  @study_comment = study.study_comment.find(params[:id])
+  @study_comment = study.study_comments.find(params[:id])
   @study_comment.destroy
   redirect_back(fallback_location: root_path)
 end 

@@ -43,7 +43,7 @@
                            <%= link_to (c.user.name), user_path(c.user.id) %>
                      </td>
                       <td> <%= c.comment %></td>
-                      <td><% link_to "削除", study_study_comments_path(@study), class: "btn btn-success btn-sm", method: :delete, "data-confirm" => "本当に消しますか？"%><td>
+                      <td><%= link_to "削除", study_study_comment_path(@study,c), class: "btn btn-danger btn-sm", method: :delete, "data-confirm" => "本当に消しますか？"%><td>
                    </tr>
                  <% end %>
                   </tbody>
@@ -51,7 +51,7 @@
 
                   <div>
                    <% if user_signed_in? && @study.user_id == current_user.id %>
-                   <%= link_to "編集", edit_study_path(@study.id) %>
+                   <%= link_to "編集", edit_study_path(@study) %>
                    <%= link_to "削除", study_path(@study), method: :delete, "data-confirm" => "本当に消しますか？" %>
                    <% end %>
                  </div>

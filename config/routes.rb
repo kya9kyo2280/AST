@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
   resources :studies do
     resource :likes, only: [:create, :destroy]
-    resource :study_comments, only: [:create, :destroy]
+    resources :study_comments, only: [:create, :destroy]
   end
 
 

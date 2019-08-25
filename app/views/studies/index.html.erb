@@ -34,7 +34,7 @@
                                      <% end %>
                                   <% end %>
                                   <% else %>
-                                  いいね <%= r.liked_users.count %>
+                                  <%= r.liked_users.count %>いいね
                                 <% end %>
                             </td>
                             </tr>
@@ -80,6 +80,8 @@
                                   <i class="far fa-thumbs-up" style="font-size: 20px;"></i> <%= s.liked_users.count %>
                                  <% end %>
                                 <% end %>
+                                <% else %>
+                                  <%= s.liked_users.count %>いいね
                              <% end %>
                             </div>
                         </div>
