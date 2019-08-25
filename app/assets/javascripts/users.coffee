@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-window.draw_graph1 = ->
+$(document).on 'turbolinks:load', ->
     ctx = document.getElementById("myChart").getContext('2d')
     myChart = new Chart(ctx, {
         type: 'pie',
@@ -39,7 +39,6 @@ window.draw_graph1 = ->
         }
     })
 
-window.draw_graph2 = -> 
     ctx = document.getElementById("studyChart").getContext('2d')
     studyChart = new Chart(ctx, {
         type: 'bar',
