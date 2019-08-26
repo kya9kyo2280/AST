@@ -13,7 +13,7 @@
                    <div class="row">
                       <div class="col-4">
                          <%= link_to (study_path(r.id)) do %>
-                         <%= attachment_image_tag r, :image, :fill, 70, 70, format: 'jpeg', fallback: "no_image.jpg" %>
+                         <%= attachment_image_tag r, :image, :fill, 70, 70, format: 'jpeg', fallback: "/images/no_image.jpg" %>
                          <% end %>
                       </div>
                       <div class="col-8">
@@ -63,7 +63,7 @@
                   <div class ="col">
                      <div class="card" style="margin: 20px;">
                          <%= link_to (study_path(s.id)) do %>
-                          <%= attachment_image_tag s, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg",class: "img-fluid" %>
+                          <%= attachment_image_tag s, :image, :fill, 200, 200, format: 'jpeg', fallback: "/images/no_image.jpg",class: "img-fluid" %>
                           <% end %>
                         <div class="card-body">
                           <div><%= truncate(s.study_title, length: 12, :omission => "...") %></div>
@@ -93,7 +93,7 @@
           </div>
               <%= paginate @studies %>
         </ul>
-            <div id="smooth-scroll">  <%= image_tag 'image4.png'%></div>
+            <div id="smooth-scroll">  <%= image_tag '/images/image4.png'%></div>
     </div>
   </div>
 </div>

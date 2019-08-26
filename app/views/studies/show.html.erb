@@ -43,7 +43,9 @@
                            <%= link_to (c.user.name), user_path(c.user.id) %>
                      </td>
                       <td> <%= c.comment %></td>
+                       <% if user_signed_in? && @study_comment.user_id == current_user.id %>
                       <td><%= link_to "削除", study_study_comment_path(@study,c), class: "btn btn-danger btn-sm", method: :delete, "data-confirm" => "本当に消しますか？"%><td>
+                        <% end %>
                    </tr>
                  <% end %>
                   </tbody>

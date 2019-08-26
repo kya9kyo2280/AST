@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-3">
         <div class="card" style="text-align: center">
-          <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg',fallback: "no_image2.jpg", size: '255x255'%>
+          <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg',fallback: "/images/no_image2.jpg", size: '255x255'%>
           <%= @user.name %>
             <div class="card-body">
               <div>目標スコア: <%= @user.purposes.last.purpose_score %>点</div>

@@ -14,7 +14,7 @@
 
       <td>
        <div>
-        <%= attachment_image_tag s, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg",size: '50x50' %>
+        <%= attachment_image_tag s, :image, :fill, 50, 50, format: 'jpeg', fallback: "/images/no_image.jpg",size: '50x50' %>
        </div>
       </td>
       <td><%= link_to s.study_title, admin_study_path(s.id) %></td>
