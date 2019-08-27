@@ -1,34 +1,30 @@
-  <div class="container">
-    <div class="row">
-      <div class="col-3">
+<div class="container">
+  <div class="row">
+    <div class="col-3">
       </div>
-  <div class="col-6 log">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <table  border="1" bordercolor="#4682B4" cellpadding="15" style="width:100%; border-collapse:separate;margin-top: 50px;">
-        <tr><td colspan="2"><h2>ログイン</h2></td></tr>
+    <div class="col-6 log">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <table  border="1" bordercolor="#4682B4" cellpadding="15" style="width:100%; border-collapse:separate;margin-top: 50px;">
+              <tr><td colspan="2"><h2>ログイン</h2></td></tr>
+                <tr>
+                  <th style = "width:30%"><%= f.label :メールアドレス %></th>
+                  <td style = "width:70%"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+                </tr>
 
+                <tr>
+                  <th><%= f.label :パスワード %></th>
+                  <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+                  </td>
+                </tr>
 
-          <tr>
-            <th style = "width:30%"><%= f.label :メールアドレス %></th>
-            <td style = "width:70%"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
-          </tr>
-
-          <tr>
-            <th><%= f.label :パスワード %></th>
-            <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="2"><%= f.submit "ログイン", class: "btn btn-primary btn-block" %></td>
-          </tr>
-      </table>
-    <% end %>
-    <div class="container">
-  <%= render "devise/shared/links" %>
-</div>
+                <tr>
+                  <td colspan="2"><%= f.submit "ログイン", class: "btn btn-primary btn-block" %></td>
+                </tr>
+            </table>
+          <% end %>
+        <div class="container">
+          <%= render "devise/shared/links" %>
+        </div>
+    </div>
   </div>
-</div>
-
-
 </div>

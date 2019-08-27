@@ -2,8 +2,6 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
 def show
         @user = User.find(params[:id])
-        @purpose = Purpose.new
-        @score = Score.new
         @post_time = PostTime.new
         @totalstudytime =  @user.post_times.all.sum(:study_time)
           respond_to do |format|
@@ -98,9 +96,6 @@ def show
     end
 
     def index
-         user_time_count = User.all.joins(:post_times).where(post_times:{ study_day:1.weeks.ago..Time.now}).group(:user_id).sum(:study_time)
-         user_time_ids = Hash[user_time_count.sort_by{ |_, v| -v }].keys
-         @user_ranking= User.find(user_time_ids).sort_by{ |o| user_time_ids.index(o.id)}
          @users = User.all
     end
 

@@ -2,9 +2,10 @@
   <div class="container">
       <div class="row">
         <div class="col-4">
-          <%= attachment_image_tag @study, :image, :fill, 300, 300, format: 'jpeg', fallback: "/images/no_image.jpg" %>
+          <%= attachment_image_tag @study, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %>
+            <h5 class="reviewer">レビュアー　 <%= link_to @study.user.name, user_path(@study.user.id) %></h5>
         </div>
-        <div class="col-4">
+        <div class="col-5">
               <h4 class="detailtitle">タイトル</h4>
                   <h5 class="detailbody"><%= @study.study_title %></h5>
               <h4 class="detailtitle">媒体</h4>
@@ -14,13 +15,29 @@
               <h4 class="detailtitle">本文</h4>
                   <h5 class="detailbody"><%= @study.review %></h5>
               <h4 class="detailtitle">いいね件数: <%= @study.likes.count %></h4>
-                  
-            <h4>いいねしたユーザー</h4>
-                <% @study.liked_users.each do |user| %>
-                  <li><%= user.name %></li>
-                <% end %>
-                <%= link_to "削除", admin_study_path(@study), method: :delete, "data-confirm" => "本当に消しますか？" %>
-		    </div>
-	   </div>
+                <table class="table table-striped">
+                  <h4 class="detailtitle">コメント一覧</h4>
+                   <tbody>
+                     <% @study_comments.each do |c| %>
+                    <tr>
+                    <td><div>
+                           <%= link_to (user_path(c.id)) do %>
+                           <%= attachment_image_tag c.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size: '40x40' %>
+                           <% end %>
+                        </div>
+                           <%= link_to (c.user.name), user_path(c.user.id) %>
+                     </td>
+                      <td> <%= c.comment %></td>
+                      <td><%= link_to "削除", admin_study_study_comment_path(@study,c), class: "btn btn-danger btn-sm", method: :delete, "data-confirm" => "本当に消しますか？"%><td>
+                        <% end %>
+                   </tr>
+                  </tbody>
+                 </table>
+
+                  <div>
+                   <%= link_to "削除", admin_study_path(@study), method: :delete, "data-confirm" => "本当に消しますか？" %>
+                 </div>
+        </div>
+     </div>
   </div>
 </div>

@@ -1,9 +1,17 @@
-  <%= form_for(@genre) do |f| %>
-    <div class="form-group">
-      <%= f.label :"ジャンル" %>
-      <%= f.text_field :genre_name, class: "form-control" %>
-    </div>
-    <div>
-      <%= f.submit '追加', class:"btn btn-success" %>
-    </div>
-  <% end %>
+<div class="container"style="padding: 20px;">
+   <div class="row">
+      <div class="col-3">
+       </div>
+      <div class="col-5">
+		  <%= form_for(@genre) do |f| %>
+		    <div class="form-group">
+		      <%= f.label :"ジャンル" %>
+		      <%= f.text_field :genre_name, class: "form-control" %>
+		    </div>
+		    <div>
+		      <%= f.submit '追加', class:"btn btn-success" %>
+		    </div>
+		  <% end %>
+	 </div>
+	</div>
+</div>

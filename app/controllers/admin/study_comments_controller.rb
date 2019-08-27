@@ -1,6 +1,5 @@
-class StudyCommentsController < ApplicationController
-
-def create
+class Admin::StudyCommentsController < ApplicationController
+	def create
 	study = Study.find(params[:study_id])
     @study_comment = StudyComment.new(study_comment_params)
     @study_comment.user_id = current_user.id
@@ -25,4 +24,3 @@ end
     params.require(:study_comment).permit(:comment, :user_id, :study_id)
   end
 end
-

@@ -31,11 +31,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :events
-    resources :studies
     resources :users
     resources :purposes
     resources :genres
     resources :media
+    resources :studies do
+    resources :study_comments, only: [:destroy]
+  end
     resources :contacts do
       resources :contact_comments
     end
