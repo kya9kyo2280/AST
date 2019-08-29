@@ -3,8 +3,6 @@ class UsersController < ApplicationController
 
   def show
         @user = User.find(params[:id])
-        @purpose = Purpose.new
-        @score = Score.new
         @post_time = PostTime.new
         @totalstudytime =  @user.post_times.all.sum(:study_time)
                             respond_to do |format|
