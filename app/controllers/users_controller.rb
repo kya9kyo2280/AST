@@ -10,6 +10,7 @@ class UsersController < ApplicationController
                             format.json {render:json => @totalstudytime}
                             format.js
                             end
+        @allstudytime = @user.post_times.with_deleted.all.sum(:study_time)
 
         @usertime =  @user.usertime
                      respond_to do |format|
@@ -24,13 +25,13 @@ class UsersController < ApplicationController
                      format.json {render:json => @purposetime}
                      format.js
                      end
-        @post_times = @user.post_times.order(study_day: "DESC").page(params[:page]).per(6)
-        @graphtimes =  @user.post_times.order(study_day: "DESC").limit(6).reverse
+        @post_times = @user.post_times.with_deleted.order(study_day: "DESC").page(params[:page]).per(6)
+        @graphtimes =  @user.post_times.with_deleted.order(study_day: "DESC").limit(6).reverse
         @timeline = Array.new
         @graphtimes.each do |graphtime|
             @timeline.push(graphtime.study_time)
         end
-        @graphdays =  @user.post_times.order(study_day: "DESC").limit(6).reverse
+        @graphdays =  @user.post_times.with_deleted.order(study_day: "DESC").limit(6).reverse
         @dayline = Array.new
         @graphdays.each do |graphday|
             @dayline.push(graphday.study_day.strftime('%m/%d').to_s)

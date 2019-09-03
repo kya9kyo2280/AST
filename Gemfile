@@ -79,4 +79,5 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'cocoon'
 gem 'font-awesome-sass', '~> 5.4.1'
+gem 'paranoia'
 

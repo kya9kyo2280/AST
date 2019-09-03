@@ -39,7 +39,7 @@ window.draw_graph1 = ->
         }
     })
 
-window.draw_graph2 = -> 
+window.draw_graph2 = ->
     ctx = document.getElementById("studyChart").getContext('2d')
     studyChart = new Chart(ctx, {
         type: 'bar',

@@ -24,6 +24,8 @@
             </div>
         </div>
       </div>
+
+
       <div class="col-9">
           <h2 class="mypageindex">最近の学習状況</h2>
             <div class="main clearfix">
@@ -35,10 +37,11 @@
                   <script>draw_graph2();</script>
               </div>
                 <div class="studydate ">
+                  <h4 class="total">総学習時間: <%= @allstudytime %>時間</h4>
                   <% if @user.id == current_user.id %>
-                 <%= form_for(@post_time) do |f| %>
-                   <label class="control-label" for="">勉強日</label>
-                   <%= f.date_select(:study_day,use_month_numbers: true,default: Date.today) %>
+                    <%= form_for(@post_time) do |f| %>
+                    <label class="control-label" for="">勉強日</label>
+                    <%= f.date_select(:study_day,use_month_numbers: true,default: Date.today) %>
                     <div class="form-group">
                      <%= f.label :"時間を追加" %>
                       <%= f.select(:study_time,  [-5,-4.5,-4,-3.5,-3,-2.5,-2,-1.5,-1,-0.5,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10],:selected=>1 )%>

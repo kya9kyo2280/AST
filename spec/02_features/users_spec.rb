@@ -51,8 +51,8 @@ RSpec.feature "Userに関するテスト", type: :feature do
         expect(page).to have_content @user2.introduction
 
         @user2.books.each do |book|
-          expect(page).to have_link book.title,href: book_path(book)
-          expect(page).to have_content book.body
+          expect(page).to have_link study.title,href: study_path(study)
+      
         end
       end
     end
@@ -61,7 +61,6 @@ RSpec.feature "Userに関するテスト", type: :feature do
       before do
         visit edit_user_path(@user1)
         find_field('user[name]').set('updated_name')
-        find_field('user[introduction]').set('updated_inttroduction')
         find('input[type="file"]').set(File.dirname(__FILE__) + "/../" +'files/sample.jpeg')
         find("input[name='commit']").click
       end
@@ -73,9 +72,7 @@ RSpec.feature "Userに関するテスト", type: :feature do
       scenario "リダイレクト先は正しいか" do
         expect(page).to have_current_path user_path(@user1)
       end
-      scenario "サクセスメッセージが表示されるか" do
-        expect(page).to have_content "successfully"
-      end
+
     end
 
     feature "他人のプロフィールの更新" do

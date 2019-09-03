@@ -16,93 +16,103 @@
 
       <nav class="navbar">
         <a class="navbar-brand" href="/"><%= image_tag('/images/image8.png', size: '90x50') %></a>
-        <div class="nav-content">
-          <ul class="list-group list-group-horizontal nav-list ">
+        <button class="navbar-toggler border-color: #ffffff;" type="button"
+                data-toggle="collapse"
+                data-target="#navmenu1"
+                aria-controls="navmenu1"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+        </button>
+  <div class="collapse navbar-collapse" id="navmenu1">
+    <ul class="float-right">
 
-           <% if admin_signed_in? %>
-               <li class="list-inline-item nav-list-item">
+      <% if admin_signed_in? %>
+              <li>
                 <%= link_to "レビュー一覧", admin_studies_path %>
               </li>
-              <li class="list-inline-item nav-list-item">
+              <li>
                 <%= link_to "ジャンルを追加", new_admin_genre_path %>
               </li>
 
-              <li class="list-inline-item nav-list-item">
+              <li>
              <%= link_to "媒体を追加", new_admin_medium_path  %>
               </li>
 
-              <li class="list-inline-item nav-list-item">
+              <li>
               <%= link_to "ユーザー一覧", admin_users_path %>
               </li>
 
-              <li class="list-inline-item nav-list-item">
+              <li>
                <%= link_to "お問合せ一覧", admin_contacts_path %>
               </li>
 
-              <li class="list-inline-item nav-list-item">
+              <li>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
 
 
-            <% elsif user_signed_in? %>
+      <% elsif user_signed_in? %>
 
-               <li class="list-inline-item nav-list-item">
+               <li>
                 <%= link_to user_path(current_user.id)  do%>
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span> マイページ
                 <%end%>
               </li>
 
-              <li class="list-inline-item nav-list-item">
+              <li>
               <%= link_to users_path  do%>
               <span class="glyphicon glyphicon-book" aria-hidden="true"></span> ランキング
               <%end%>
               </li>
 
-              <li class="list-inline-item nav-list-item">
+              <li>
               <%= link_to studies_path  do%>
               <span class="glyphicon glyphicon-book" aria-hidden="true"></span> レビュー
               <%end%>
               </li>
 
-              <li class="list-inline-item nav-list-item">
+              <li>
                <%= link_to new_contact_path  do%>
                <span class="glyphicon glyphicon-home" aria-hidden="true"></span> お問合せ
                <%end%>
               </li>
 
-              <li class="list-inline-item nav-list-item">
+              <li>
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
 
 
     <% else %>
 
-        <li class="list-inline-item nav-list-item">
-         <%= link_to root_path  do%>
-        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> レビュー
-        <%end%>
-      </li>
+              <li>
+                <%= link_to root_path  do%>
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span> レビュー
+                <%end%>
+              </li>
 
-       <li class="list-inline-item nav-list-item">
-          <%= link_to about_path  do%>
-        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> はじめに
-        <%end%>
-      </li>
+              <li>
+                <%= link_to about_path  do%>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> はじめに
+                <%end%>
+              </li>
 
-        <li class="list-inline-item nav-list-item">
-          <%= link_to new_user_registration_path  do%>
-        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 登録
-        <%end%>
-      </li>
+              <li>
+                <%= link_to new_user_registration_path  do%>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 登録
+                <%end%>
+              </li>
 
-        <li class="list-inline-item nav-list-item">
-        <%= link_to new_user_session_path  do%>
-        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> ログイン
-        <%end%>
-      </li>
+              <li>
+                <%= link_to new_user_session_path  do%>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> ログイン
+                <%end%>
+              </li>
 
    <% end %>
           </ul>
+  </div>
 
-        </div>
       </nav>
     </header>
     <%= yield %>
