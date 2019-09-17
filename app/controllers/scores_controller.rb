@@ -16,6 +16,7 @@ def new
   end
 
   private
+  
   def score_params
     params.require(:score).permit(:current_score, :user_id)
   end

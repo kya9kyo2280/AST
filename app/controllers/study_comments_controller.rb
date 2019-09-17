@@ -14,13 +14,14 @@ def create
   end
 
   def destroy
-  study = Study.find(params[:study_id])
-  @study_comment = study.study_comments.find(params[:id])
-  @study_comment.destroy
-  redirect_back(fallback_location: root_path)
-end
+    study = Study.find(params[:study_id])
+    @study_comment = study.study_comments.find(params[:id])
+    @study_comment.destroy
+    redirect_back(fallback_location: root_path)
+  end
 
   private
+  
   def study_comment_params
     params.require(:study_comment).permit(:comment, :user_id, :study_id)
   end

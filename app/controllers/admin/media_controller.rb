@@ -14,6 +14,7 @@ class Admin::MediaController < ApplicationController
   end
 
   private
+  
   def medium_params
     params.require(:medium).permit(:medium_name)
   end

@@ -12,6 +12,7 @@ before_action :authenticate_admin!
   end
 
   private
+  
   def contact_comment_params
     params.require(:contact_comment).permit(:reply, :contact_id)
   end

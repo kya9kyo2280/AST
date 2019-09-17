@@ -43,16 +43,17 @@ class StudiesController < ApplicationController
   end
 
   def correct_user
-  @study = Study.find(params[:id])
-  if current_user.id != @study.user_id
-    redirect_to root_path
+    @study = Study.find(params[:id])
+    if current_user.id != @study.user_id
+      redirect_to root_path
+    end
   end
-end
 
   def about
   end
 
   private
+  
     def study_params
         params.require(:study).permit(:study_title, :review, :image, :user_id, :genre_id, :medium_id)
     end

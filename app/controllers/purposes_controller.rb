@@ -21,6 +21,7 @@ def new
   end
 
   private
+  
   def purpose_params
     params.require(:purpose).permit(:purpose_score, :user_id)
   end

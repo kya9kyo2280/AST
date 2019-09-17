@@ -27,7 +27,7 @@
 
 
       <div class="col-9">
-          <h2 class="mypageindex">最近の学習状況</h2>
+          <h2 class="mypage_index">最近の学習状況</h2>
             <div class="main clearfix">
               <div class="studygarph">
                  <canvas id="studyChart" width="200" height="200"></canvas>
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-             <h3 class="mypageindex">投稿内容</h3>
+             <h3 class="mypage_index">投稿内容</h3>
             <div class= "row" >
               <% @user.studies.each do |study| %>
               <div class= "col-2" >
@@ -68,7 +68,7 @@
               <% end %>
           </div>
 
-          <h3 class="mypageindex">いいねしている投稿</h3>
+          <h3 class="mypage_index">いいねしている投稿</h3>
             <div class= "row" >
               <% @user.liked_studies.each do |study| %>
               <div class= "col-2" >

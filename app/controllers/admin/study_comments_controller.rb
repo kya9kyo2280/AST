@@ -20,6 +20,7 @@ class Admin::StudyCommentsController < ApplicationController
 end
 
   private
+  
   def study_comment_params
     params.require(:study_comment).permit(:comment, :user_id, :study_id)
   end

@@ -16,6 +16,7 @@ class Admin::StudiesController < ApplicationController
   end
 
   private
+  
     def study_params
         params.require(:study).permit(:study_title, :review)
     end

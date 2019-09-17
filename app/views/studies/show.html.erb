@@ -1,4 +1,4 @@
-<div class="studydetail">
+<div class="study_detail">
   <div class="container">
       <div class="row">
         <div class="col-4">
@@ -6,15 +6,15 @@
             <h5 class="reviewer">レビュアー　 <%= link_to @study.user.name, user_path(@study.user.id) %></h5>
         </div>
         <div class="col-5">
-              <h4 class="detailtitle">タイトル</h4>
-                  <h5 class="detailbody"><%= @study.study_title %></h5>
-              <h4 class="detailtitle">媒体</h4>
-                  <h5 class="detailbody"><%= @study.medium.medium_name %></h5>
-              <h4 class="detailtitle">ジャンル</h4>
-                  <h5 class="detailbody"><%= @study.genre.genre_name %></h5>
-              <h4 class="detailtitle">本文</h4>
-                  <h5 class="detailbody"><%= @study.review %></h5>
-              <h4 class="detailtitle">いいね件数: <%= @study.likes.count %></h4>
+              <h4 class="detail_title">タイトル</h4>
+                  <h5 class="detail_body"><%= @study.study_title %></h5>
+              <h4 class="detail_title">媒体</h4>
+                  <h5 class="detail_body"><%= @study.medium.medium_name %></h5>
+              <h4 class="detail_title">ジャンル</h4>
+                  <h5 class="detail_body"><%= @study.genre.genre_name %></h5>
+              <h4 class="detail_title">本文</h4>
+                  <h5 class="detail_body"><%= @study.review %></h5>
+              <h4 class="detail_title">いいね件数: <%= @study.likes.count %></h4>
                <% if user_signed_in? %>
                   <% if current_user.already_liked?(@study) %>
                    <%= link_to study_likes_path(@study), method: :delete do %>
@@ -31,7 +31,7 @@
                  <%= f.submit 'コメントする' %>
                <% end %>
                 <table class="table table-striped">
-                  <h4 class="detailtitle">コメント一覧</h4>
+                  <h4 class="detail_title">コメント一覧</h4>
                    <tbody>
                      <% @study_comments.each do |c| %>
                     <tr>
