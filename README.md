@@ -1,24 +1,11 @@
-# README
+このアプリASTはTOEIC学習に関する勉強方法の共有
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ユーザーの学習計画の作成、学習時間の管理を
 
-Things you may want to cover:
+お手伝いをすることを目的としたアプリです。
 
-* Ruby version
+このアプリにおいて、現在のスコアから目標達成のための時間が
 
-* System dependencies
+表示されますが、目安としての時間として、参考程度にして頂くようお願い致します。
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+勉強方法共有のため、使っている本、アプリが投稿されていましたら、いいねをお願い致します。
